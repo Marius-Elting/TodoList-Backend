@@ -30,7 +30,7 @@ export class Task {
         enum: Priority,
         default: Priority.normal
     })
-    prioty: Priority
+    priority: Priority
 
     @Column({
         type: "enum",

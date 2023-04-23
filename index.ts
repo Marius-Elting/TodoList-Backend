@@ -4,7 +4,7 @@ import { DataSource } from "typeorm"
 import cors from "cors"
 import bodyParser from "body-parser"
 import { Task } from "./src/tasks/tasks.entity"
-import { tasksRouter } from "./src/tasks/tasks.router"
+import { tasksRouter } from "./Router/tasksRouter"
 
 
 const app: Express = express()
