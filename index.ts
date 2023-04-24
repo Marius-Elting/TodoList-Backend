@@ -5,6 +5,8 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import { Task } from "./src/tasks/tasks.entity"
 import { tasksRouter } from "./Router/tasksRouter"
+import { userRouter } from "./Router/userRouter"
+import { User } from "./src/tasks/user.entity"
 
 
 const app: Express = express()
@@ -23,11 +25,12 @@ export const AppDataSource = new DataSource({
     password: process.env.MYSQL_PASSWORD,
     database: "railway",
     synchronize: true,
-    entities: [Task]
+    entities: [Task, User]
 })
 
 
 app.use("/api/v1/tasks", tasksRouter)
+app.use("/api/v1/user", userRouter)
 
 AppDataSource.initialize()
     .then(() => {
