@@ -11,4 +11,10 @@ export class UserConntroller {
         console.log(res)
         return res
     }
+
+    public async login(email: string, password: string) {
+        const res = await this.taskRepository.findOne({ where: { email: email, password: password } })
+        console.log(res)
+        return res
+    }
 }

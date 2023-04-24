@@ -6,7 +6,7 @@ export const createToken = (user: User) => {
         throw new Error("JWT Secret could not be accesed")
     }
     const secret: string = process.env.JWT_SECRET
-    const token = jwt.sign({ name: user.username, firstName: user.firstName, email: user.email }, secret, { expiresIn: "10min" })
+    const token = jwt.sign({ name: user.username, id: user.id, email: user.email }, secret, { expiresIn: "10min" })
     return token
 }
 
