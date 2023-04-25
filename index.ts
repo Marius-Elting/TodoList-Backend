@@ -8,12 +8,12 @@ import { tasksRouter } from "./Router/tasksRouter"
 import { userRouter } from "./Router/userRouter"
 import { User } from "./src/tasks/user.entity"
 
-
 const app: Express = express()
 const PORT = process.env.PORT || 5858
 
 
 app.use(bodyParser.json())
+
 app.use(cors())
 
 export const AppDataSource = new DataSource({
