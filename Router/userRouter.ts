@@ -1,18 +1,18 @@
+import { createToken, verifyToken } from './../util/token';
 import { UserConntroller } from '../controller/userController';
 import { encryptPassword } from '../middleware/encrypt';
-
 import { validationResult, body } from "express-validator"
-
 import { Router, Request, Response } from "express";
-import { createToken } from '../util/token';
 
 
 export const userRouter: Router = Router()
-
-userRouter.post(
-    "/register",
+const checkRegister = [
     body("password").isString().isLength({ min: 5 }).withMessage("The password has to be at least 5 letters long"),
     body("email").isEmail().withMessage("Please enter a valid Email"),
+]
+userRouter.post(
+    "/register",
+    checkRegister,
     encryptPassword,
     async (req: Request, res: Response) => {
         const user = req.body
@@ -38,7 +38,6 @@ userRouter.post(
 )
 
 
-
 userRouter.post(
     "/login",
     encryptPassword,
@@ -62,3 +61,21 @@ userRouter.post(
 
     }
 )
+
+
+userRouter.delete("/delete", async (req: Request, res: Response) => {
+    const token = req.cookies.token
+    const encryptToken = verifyToken(token)
+    try {
+        const userController = new UserConntroller()
+        const response = await userController.delete(encryptToken.id)
+        if (response.affected && response.affected >= 1) {
+            res.send({ message: "User Deleted Successfully" })
+        } else {
+            res.send({ message: "User does not exists" })
+        }
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
+})

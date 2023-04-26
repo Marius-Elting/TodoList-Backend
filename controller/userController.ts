@@ -8,13 +8,16 @@ export class UserConntroller {
 
     public async register(user: User) {
         const res = await this.taskRepository.insert(user)
-        console.log(res)
         return res
     }
 
     public async login(email: string, password: string) {
         const res = await this.taskRepository.findOne({ where: { email: email, password: password } })
-        console.log(res)
+        return res
+    }
+
+    public async delete(id: string) {
+        const res = await this.taskRepository.delete({ id: id })
         return res
     }
 }
