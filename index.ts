@@ -1,3 +1,5 @@
+
+import cookieParser from 'cookie-parser';
 import express, { Express } from "express"
 import "./config/config"
 import { DataSource } from "typeorm"
@@ -13,6 +15,7 @@ const PORT = process.env.PORT || 5858
 
 
 app.use(bodyParser.json())
+app.use(cookieParser())
 
 app.use(cors())
 

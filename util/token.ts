@@ -16,5 +16,8 @@ export const verifyToken = (token: string) => {
         throw new Error("JWT Secret could not be accesed")
     }
     const result = jwt.verify(token, process.env.JWT_SECRET)
+    if (typeof result === "string") {
+        throw new Error("Token invalid")
+    }
     return result
 }
