@@ -1,8 +1,6 @@
 import { Status } from '../enums/Status';
-import { Priority } from './../enums/Priority';
+import { Priority } from '../enums/Priority';
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-
-// import { Status } from "../enums/Status";
 
 
 @Entity()
@@ -38,4 +36,10 @@ export class Task {
         default: Status.todo
     })
     status: Status
+
+    @Column({
+        type: "text",
+    })
+    owner: string
+
 }

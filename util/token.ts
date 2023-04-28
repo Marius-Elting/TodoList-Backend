@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import { User } from "../src/tasks/user.entity"
+import { User } from "../src/Entitys/user.entity"
 
 export const createToken = (user: User) => {
     if (!process.env.JWT_SECRET) {

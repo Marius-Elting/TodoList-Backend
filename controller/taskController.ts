@@ -1,4 +1,4 @@
-import { Task } from "../src/tasks/tasks.entity";
+import { Task } from "../src/Entitys/tasks.entity";
 import { AppDataSource } from "..";
 import { instanceToPlain } from "class-transformer";
 

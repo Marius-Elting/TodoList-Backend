@@ -19,7 +19,7 @@ userRouter.post(
         const result = validationResult(req)
 
         if (result.array().length > 0) {
-            res.json(result.array())
+            res.status(401).json(result.array())
             return
         }
         try {
@@ -27,7 +27,6 @@ userRouter.post(
             const response = await userController.register(user)
             user.id = response.identifiers[0].id
             const token: string = createToken(user)
-
             res.cookie("token", token, { httpOnly: true, secure: true, sameSite: 'none' })
             res.send("registered")
         } catch (err) {
@@ -40,9 +39,16 @@ userRouter.post(
 
 userRouter.post(
     "/login",
+    checkRegister,
     encryptPassword,
     async (req: Request, res: Response) => {
         const user = req.body
+        const result = validationResult(req)
+
+        if (result.array().length > 0) {
+            res.status(401).json(result.array())
+            return
+        }
         try {
             const userController = new UserConntroller()
             const response = await userController.login(user.email, user.password)
@@ -58,7 +64,6 @@ userRouter.post(
             console.log(err)
             res.send(err)
         }
-
     }
 )
 
@@ -70,9 +75,9 @@ userRouter.delete("/delete", async (req: Request, res: Response) => {
         const userController = new UserConntroller()
         const response = await userController.delete(encryptToken.id)
         if (response.affected && response.affected >= 1) {
-            res.send({ message: "User Deleted Successfully" })
+            res.json({ message: "User Deleted Successfully" })
         } else {
-            res.send({ message: "User does not exists" })
+            res.json({ message: "User does not exists" })
         }
     } catch (err) {
         console.log(err)

@@ -1,5 +1,5 @@
 import { AppDataSource } from "..";
-import { User } from "../src/tasks/user.entity";
+import { User } from "../src/Entitys/user.entity";
 
 
 export class UserConntroller {
