@@ -5,10 +5,10 @@ import "./config/config"
 import { DataSource } from "typeorm"
 import cors from "cors"
 import bodyParser from "body-parser"
-import { Task } from "./src/tasks/tasks.entity"
+import { Task } from "./src/Entitys/tasks.entity"
 import { tasksRouter } from "./Router/tasksRouter"
 import { userRouter } from "./Router/userRouter"
-import { User } from "./src/tasks/user.entity"
+import { User } from "./src/Entitys/user.entity"
 
 const app: Express = express()
 const PORT = process.env.PORT || 5858
