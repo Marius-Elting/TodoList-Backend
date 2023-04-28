@@ -19,7 +19,7 @@ export class Task {
     date: string
 
     @Column({
-        type: "longtext"
+        type: "text"
     })
     description: string
 

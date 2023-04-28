@@ -31,7 +31,7 @@ userRouter.post(
             res.send("registered")
         } catch (err) {
             console.log(err)
-            res.send("Email already in use")
+            res.status(403).send("Email already in use")
         }
     }
 )
