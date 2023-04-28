@@ -20,12 +20,12 @@ app.use(cookieParser())
 app.use(cors())
 
 export const AppDataSource = new DataSource({
-    type: "mysql",
-    host: process.env.MYSQL_HOST,
-    url: process.env.MYSQL_URL,
-    port: 7612,
-    username: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
+    type: "postgres",
+    host: process.env.PG_HOST,
+    url: process.env.PG_URL,
+    port: Number(process.env.PG_PORT),
+    username: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
     database: "railway",
     synchronize: true,
     entities: [Task, User]
@@ -38,7 +38,7 @@ app.use("/api/v1/user", userRouter)
 AppDataSource.initialize()
     .then(() => {
         app.listen(PORT, () => console.log("Server läuft auf port" + PORT))
-        console.log("CONNECTED to MySql")
+        console.log("CONNECTED to PG")
     })
     .catch(err => {
         console.log(err)
