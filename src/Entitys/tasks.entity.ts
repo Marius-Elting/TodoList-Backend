@@ -37,9 +37,9 @@ export class Task {
     })
     status: Status
 
-    @Column({
-        type: "text",
-    })
-    owner: string
+    // @Column({
+    //     type: "text",
+    // })
+    // owner: string
 
 }
